@@ -5,9 +5,9 @@ pipeline {
         MIN_SIZE = 10
     }
     stages {
-        stage('Requirements') {
+        stage('Checkout SCM....') {
             steps {
-                echo 'Getting Requirements....'
+                echo 'Checking out Jenkinsfile from Github....'
             }
         }
         stage('Build') {
@@ -17,7 +17,7 @@ pipeline {
                 echo "the MIN_SIZE = ${env.MIN_SIZE}"
             }
         }
-        stage('Test') {
+        stage('Test....') {
             environment {
                 MAX_SIZE = 9999
                 MIN_SIZE = 9
@@ -30,10 +30,12 @@ pipeline {
                 echo "the MIN_SIZE = ${env.MIN_SIZE}"
             }
         }
-        stage('Report') {
+        stage('Report and Archive....') {
             steps {
                 echo 'Reporting....'
                 sh 'echo "this is a text report generated and archived by a Jenkins pipeline" >> 3stage-report.txt'
+
+                echo 'Archiving....'
                 archiveArtifacts allowEmptyArchive: true,
                     artifacts: '*.txt',
                     fingerprint: true,
