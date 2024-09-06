@@ -7,9 +7,12 @@ pipeline {
 
     options {
 
+        // only keep 5 logs for no more than 10 days
+        buildDiscarder(logRotator(daysToKeepStr: '10', numToKeepStr: '5'))
+
         // cause the build to timeout if it runs for more than an hour
         timeout(time: 1, unit: 'HOURS')
-        
+
         // add time staps to log files
         timestamps()
     }
@@ -17,6 +20,8 @@ pipeline {
         stage('Checkout SCM....') {
             steps {
                 echo 'Checking out Jenkinsfile from Github....'
+                echo  "BUILD_DISPLAY_NAME         =  ${BUILD_DISPLAY_NAME}"
+                echo  "WORKSPACE                  =  ${WORKSPACE}"
             }
         }
         stage('Build') {
@@ -24,6 +29,8 @@ pipeline {
                 echo 'Building....'
                 echo "the MAX_SIZE = ${env.MAX_SIZE}"
                 echo "the MIN_SIZE = ${env.MIN_SIZE}"
+                echo  "currentBuild.projectName              =  ${currentBuild.projectName}"
+                echo  "currentBuild.id                       =  ${currentBuild.id}"
             }
         }
         stage('Test....') {
