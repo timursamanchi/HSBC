@@ -4,6 +4,15 @@ pipeline {
         MAX_SIZE = 100
         MIN_SIZE = 10
     }
+
+    options {
+
+        // cause the build to timeout if it runs for more than an hour
+        timeout(time: 1, unit: 'HOURS')
+        
+        // add time staps to log files
+        timestamps()
+    }
     stages {
         stage('Checkout SCM....') {
             steps {
