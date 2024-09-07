@@ -55,6 +55,12 @@ pipeline {
                 echo  "currentBuild.id                       =  ${currentBuild.id}"
             }
         }
+        stage('source maven'){
+            steps {
+                sh 'mvn --version'
+                sh 'git --version'
+            }
+        }
         stage('Test....') {
             environment {
                 MAX_SIZE = 9999
