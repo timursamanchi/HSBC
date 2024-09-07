@@ -7,6 +7,9 @@ pipeline {
     tools {
         maven 'mavin-3.9.5'
     }
+    options {
+        copyArtifactPermission 'read-artifact'
+    }
     parameters {
         string(name: 'ENVIRONMENT',
                  defaultValue: 'DEV',
