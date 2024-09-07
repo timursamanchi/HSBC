@@ -5,7 +5,7 @@ pipeline {
         MIN_SIZE = 10
     }
     tools {
-        maven 'Maven-3.8.4'
+        maven 'mavin-3.9.5'
     }
     parameters {
         string(name: 'ENVIRONMENT',
