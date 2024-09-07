@@ -7,9 +7,6 @@ pipeline {
     tools {
         maven 'mavin-3.9.5'
     }
-    options {
-        copyArtifactPermission 'read-artifact'
-    }
     parameters {
         string(name: 'ENVIRONMENT',
                  defaultValue: 'DEV',
@@ -40,6 +37,8 @@ pipeline {
 
         // add time staps to log files
         timestamps()
+
+        copyArtifactPermission 'read-artifact'
     }
     stages {
         stage('Checkout SCM....') {
