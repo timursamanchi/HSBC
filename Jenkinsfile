@@ -4,6 +4,9 @@ pipeline {
         MAX_SIZE = 100
         MIN_SIZE = 10
     }
+    tools {
+        maven 'Maven-3.8.4'
+    }
     parameters {
         string(name: 'ENVIRONMENT',
                  defaultValue: 'DEV',
